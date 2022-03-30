@@ -3,16 +3,10 @@ const process = require("process")
 const path = require("path")
 const os = require("os")
 
-let argv;
-if (process.argv[0].slice(-4) === "node") {
-  argv = process.argv.slice(1); // Sometimes, this code is executed without node
-} else {
-  argv = process.argv;
-}
+let argv = process.argv.slice(1) // get rid of leading "node"
+const arg_set = new Set(argv.slice(1))
 
-const arg_set = new Set(process.argv.slice(1))
-
-if (arg_set.has("--help") || arg_set.size === 0) {
+if (arg_set.has("--help") || argv.length === 1) {
   console.log(
 `Print matrices in the CS61C Project 2 format to stdout from .bin files. 
 Do not use DIR/* syntax. Use just DIR
