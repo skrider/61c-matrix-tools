@@ -31,10 +31,10 @@ I recommend setting an alias for the command. This is how you do it in bash:
 cd 61c-matrix-tools
 
 # set an alias for the current shell session
-alias cmtool="node $(pwd)/index.js"
+alias cmtool="node $(pwd)/cmtool.js"
 
 # add alias to future sessions also
-echo "alias cmtool=\"node $(pwd)/index.js\"" >> ~/.bashrc
+echo "alias cmtool=\"node $(pwd)/cmtool.js\"" >> ~/.bashrc
 bash
 #+end_src
 
@@ -48,7 +48,18 @@ You can also compile this into an executable using a global install of the NPM p
 
 ** Usage
 
-You can print the test cases, and also use the ~write_matrix~ assembly function to write your intermediate computation results to .bin files (use the ~.data fname: .asciiz "/path/to/fname.bin"~ directive to save a filename string, and ~la a0 fname~ to access) for viewing with cmtool.
+You can print the test cases, and also use the ~write_matrix~ assembly function to write your intermediate computation results to .bin files for viewing with cmtool.
+
+#+begin_src risc-v
+.data
+  fname: .asciiz "/path/to/fname.bin"
+
+.text
+  ...
+  la a0 fname
+  ...
+  jal write_matrix
+#+end_src
 
 You can write your own test cases as well, and verify them by copying the output of ~cmtool ./matrix.bin --latex~ into Symbolab to do the multiplication. If anyone wants to write a sub-command to multiply matrices automatically, or to parse CSV into .bin matrices, be my guest.
 
