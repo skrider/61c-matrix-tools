@@ -1,0 +1,13 @@
+{
+  "name": "61c-matrix-tools",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "pkg -o bin/cmtool src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skrider/61c-matrix-tools.git"
+  },
+  "author": "Stephen Krider <skrider@berkeley.edu>",
+  "license": "MIT"
+}
