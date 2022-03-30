@@ -1,0 +1,55 @@
+* 61C Matrix Tools
+
+This is a command-line tool that helps you debug your 61C Classify project. For my year, the spec, including matrix file format, can be found at https://cs61c.org/fa21/projects/proj2/.
+
+Right now, all it can do is print matrices from .bin files, but it is pretty good at it.
+
+The tool is written in ES6 Node javascript.
+
+** Installation
+
+Make sure that you have Node on your computer. You can check this by running
+
+#+begin_src bash
+node -v
+#+end_src
+
+If you get an error, go download Node.js from their main website. Once you have verified that your computer has Node, you can download and run the program via
+
+#+begin_src bash
+# download
+git clone https://github.com/skrider/61c-matrix-tools.git
+
+# run
+node /path/to/61c-matrix-tools/cmtool.js --help
+#+end_src
+
+I recommend setting an alias for the command. This is how you do it in bash:
+
+#+begin_src bash
+# navigate to this repo's root first
+cd 61c-matrix-tools
+
+# set an alias for the current shell session
+alias cmtool="node $(pwd)/index.js"
+
+# add alias to future sessions also
+echo "alias cmtool=\"node $(pwd)/index.js\"" >> ~/.bashrc
+bash
+#+end_src
+
+You can then run just the alias:
+
+#+begin_src bash
+cmtool matrix.bin --latex
+#+end_src
+
+You can also compile this into an executable using a global install of the NPM package *pkg* if you like.
+
+** Usage
+
+You can print the test cases, and also use the ~write_matrix~ assembly function to write your intermediate computation results to .bin files (use the ~.data fname: .asciiz "/path/to/fname.bin"~ directive to save a filename string, and ~la a0 fname~ to access) for viewing with cmtool.
+
+You can write your own test cases as well, and verify them by copying the output of ~cmtool ./matrix.bin --latex~ into Symbolab to do the multiplication. If anyone wants to write a sub-command to multiply matrices automatically, or to parse CSV into .bin matrices, be my guest.
+
+If you do end up writing your own test cases, please submit a PR with them inside a test folder so that others can benefit from your work!
